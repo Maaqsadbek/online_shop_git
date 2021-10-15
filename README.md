@@ -1,2 +1,2 @@
-# online_shop_git
+# online_shop. Real kredit
  
