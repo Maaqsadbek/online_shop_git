@@ -33,16 +33,16 @@ def index(request):
             new_id = max(idlar)
             Onemail(new_id + 1, gmail).save()
 #### Search bilan iwlash#############
-    #if "Search" in request.POST:
-     #   if not (request.POST.get("Search") is None):
-      #      malumot = request.POST.get("Search").strip()
-       #     qidiruv = Q(nomi__startswith = malumot) | Q(turi__startswith = malumot) | Q(
-        #        new_prise__startswith = malumot) | Q(rangi__startswith = malumot) | Q(desc__startswith = malumot) | Q(
-         #       tur__nomi__startswith = malumot) | Q(rang__nomi__startswith = malumot)
-            #try:
-             #   Maks = Maxsulotlar.objects.filter(qidiruv)
-            #except Exception as s:
-             #   print(s)
+    # if not(request.POST.get('Search') is None):
+    #     malumot = request.POST.get('Search')
+    #     soz = malumot.strip()
+    #     qidirish = Q(nomi__startswith=soz)|Q(turi__startswith=soz)
+    #     maks = Maxsulotlar.objects.filter(qidirish)
+    #
+    #     return render(request, 'index.html',
+    #                      {"Maks": maks, "new_id": new_id, 'menyu': menyu, 'chegirmalar': chegirmalar,
+    #                       'mijozlar1': mijozlar1,
+    #                       'mijozlar2': mijozlar2, 'mijozlar3': mijozlar3})
 
     return render(request, 'index.html',
                   { "new_id": new_id, 'menyu': menyu, 'chegirmalar': chegirmalar, 'mijozlar1': mijozlar1,
@@ -104,7 +104,7 @@ def services(request):
     return render(request, 'services.html')
 
 
-def single(request):
+def single(request, id=0):
     ##Bittalik email uchun##
     if "Email" in request.POST:
         if not (request.POST.get("Email") is None):
@@ -115,4 +115,18 @@ def single(request):
                 idlar.append(page.id)
             new_id = max(idlar)
             Onemail(new_id + 1, gmail).save()
-    return render(request, 'single.html')
+#####single uchun######
+
+    if id!= 0:
+        acces=Maxsulotlar.objects.get(id=id)
+        narx=acces.new_prise
+        qiymat=narx/100
+        qiymat2=qiymat*120
+        umumiy_qiymat=int(qiymat2/12)
+
+
+
+
+
+
+    return render(request, 'single.html',{'acces':acces,'umumiy_qiymat':umumiy_qiymat})

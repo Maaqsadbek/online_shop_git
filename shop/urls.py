@@ -28,7 +28,9 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('product/', views.product, name='product'),
     path('services/',views.services, name='services'),
-    path('single/', views.single, name='single')
+    path('single/', views.single, name='single'),
+    path('single1/<str:id>', views.single, name='single1'),
+    path('single2/<str:id>', views.single,name='single2')
 
 
 
