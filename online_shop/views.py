@@ -123,10 +123,13 @@ def single(request, id=0):
         qiymat=narx/100
         qiymat2=qiymat*120
         umumiy_qiymat=int(qiymat2/12)
+        #### 6 oylik tolov uchun #####
+        narx6 = int(narx / 6)
 
 
 
 
 
 
-    return render(request, 'single.html',{'acces':acces,'umumiy_qiymat':umumiy_qiymat})
+    return render(request, 'single.html',{'acces':acces,'umumiy_qiymat':umumiy_qiymat,'qiymat2':qiymat2,'narx':narx,
+                                          'narx6':narx6})
